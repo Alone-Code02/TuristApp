@@ -63,7 +63,7 @@ class HeaderCurvo extends StatelessWidget {
     return Container(
         height: double.infinity,
         width: double.infinity,
-        //color: Color(0xff5082de),
+        //color: Color(0x8D5082DE),
         child: CustomPaint(painter: _HeaderCurvolPainter()));
   }
 }
