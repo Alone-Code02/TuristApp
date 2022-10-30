@@ -72,7 +72,7 @@ class _HeaderCurvolPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
-    lapiz.color = const Color(0xff5082de);
+    lapiz.color = const Color(0xff55ABDB);
     lapiz.style = PaintingStyle.fill;
     lapiz.strokeWidth = 20;
 
@@ -80,7 +80,7 @@ class _HeaderCurvolPainter extends CustomPainter {
 
     path.lineTo(0, size.height * 0.25);
     path.quadraticBezierTo(
-        size.width * .5, size.height * .35, size.width, size.height * .25);
+        size.width * .5, size.height * .45, size.width, size.height * .25);
     path.lineTo(size.width, 0);
 
     canvas.drawPath(path, lapiz);

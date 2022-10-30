@@ -7,7 +7,11 @@ class HeadersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeaderCurvo(),
+      body: Stack(
+        children: <Widget>[
+          HeaderCurvo(),
+        ],
+      ),
     );
   }
 }
