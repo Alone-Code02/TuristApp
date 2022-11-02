@@ -63,7 +63,7 @@ class HeaderCurvo extends StatelessWidget {
     return Container(
         height: double.infinity,
         width: double.infinity,
-        //color: Color(0x8D5082DE),
+        //color: Color(0x495082DE),
         child: CustomPaint(painter: _HeaderCurvolPainter()));
   }
 }
@@ -71,8 +71,14 @@ class HeaderCurvo extends StatelessWidget {
 class _HeaderCurvolPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final lapiz = Paint();
-    lapiz.color = const Color(0xff55ABDB);
+    final Rect rect = new Rect.fromCircle(center: Offset(200, 10), radius: 99);
+    final Gradient gradiente = LinearGradient(colors: <Color>[
+      Color.fromARGB(168, 76, 163, 210),
+      Color.fromARGB(168, 116, 183, 219),
+      Color.fromARGB(168, 192, 219, 234)
+    ]);
+    final lapiz = Paint()..shader = gradiente.createShader(rect);
+    lapiz.color = Color.fromARGB(168, 85, 172, 219);
     lapiz.style = PaintingStyle.fill;
     lapiz.strokeWidth = 20;
 
