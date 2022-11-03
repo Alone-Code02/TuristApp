@@ -3,15 +3,15 @@ import 'package:turistapp/src/pages/widgets/headers.dart';
 
 //import 'package:flutter_modulo1_fake_backend/models.dart';
 
-class HomePage extends StatefulWidget {
+class Quindio extends StatefulWidget {
   //final User loggedUser;
-  const HomePage({super.key});
+  const Quindio({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Quindio> createState() => _QuindioState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _QuindioState extends State<Quindio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,22 +28,22 @@ class _HomePageState extends State<HomePage> {
 class _MainScroll extends StatelessWidget {
   final departamentos = [
     _ListaItems(
-      'Quindío',
+      'Valle del Cocora',
       Color.fromARGB(141, 95, 184, 125),
       DecorationImage(
           image: AssetImage("assets/images/cocora.jpg"), fit: BoxFit.fill),
     ),
     _ListaItems(
-      'Risaralda',
+      'Parque del Café',
       Color.fromARGB(255, 175, 194, 208),
       DecorationImage(
-          image: AssetImage("assets/images/termales.jpg"), fit: BoxFit.fill),
+          image: AssetImage("assets/images/parquecafe.jpg"), fit: BoxFit.fill),
     ),
     _ListaItems(
-      'Valle del Cauca',
+      'Panaca',
       Color.fromARGB(255, 206, 208, 175),
       DecorationImage(
-          image: AssetImage("assets/images/valle.jpg"), fit: BoxFit.fill),
+          image: AssetImage("assets/images/panaca.jpg"), fit: BoxFit.fill),
     ),
     _ListaItems(
       'Quindío',
@@ -215,7 +215,7 @@ class _ListaItems extends StatelessWidget {
   final String nombre;
   final Color color;
   final DecorationImage photo;
-  //final Route ruta;
+  //final BuildContext ruta;
 
   const _ListaItems(
     this.nombre,
@@ -226,13 +226,13 @@ class _ListaItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
+      elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35.0)),
       margin: EdgeInsets.all(15),
       child: Container(
           child: TextButton(
             onPressed: () {
-              _showQuindio(context);
+              _showCocora(context);
             },
             child: Transform.translate(
               offset: Offset(-70, 60),
@@ -251,5 +251,9 @@ class _ListaItems extends StatelessWidget {
               image: photo,
               borderRadius: (BorderRadius.circular(35)))),
     );
+  }
+
+  void _showCocora(BuildContext context) {
+    Navigator.of(context).pushNamed("/quindio/parquecafe");
   }
 }
