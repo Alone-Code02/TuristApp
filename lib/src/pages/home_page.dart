@@ -1,7 +1,5 @@
-// import 'dart:io';
-// import 'dart:js';
-
 import 'package:flutter/material.dart';
+import 'package:turistapp/src/pages/widgets/headers.dart';
 
 //import 'package:flutter_modulo1_fake_backend/models.dart';
 
@@ -16,17 +14,142 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Stack(children: [_listaSitios()])
-        //body: _titulo(),
-        );
+    return Scaffold(
+        body: Stack(children: [
+      _MainScroll()
+      //_listaSitios()
+    ]));
+    //body: _titulo(),
   }
 }
+
+//-----------SCROLL
+
+class _MainScroll extends StatelessWidget {
+  final departamentos = [
+    _ListaItems(
+      'Quindío',
+      Color.fromARGB(141, 95, 184, 125),
+      DecorationImage(
+          image: AssetImage("assets/images/cocora.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Risaralda',
+      Color.fromARGB(255, 175, 194, 208),
+      DecorationImage(
+          image: AssetImage("assets/images/termales.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Valle del Cauca',
+      Color.fromARGB(255, 206, 208, 175),
+      DecorationImage(
+          image: AssetImage("assets/images/valle.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Quindío',
+      Color.fromARGB(141, 95, 184, 125),
+      DecorationImage(
+          image: AssetImage("assets/images/cocora.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Risaralda',
+      Color.fromARGB(255, 175, 194, 208),
+      DecorationImage(
+          image: AssetImage("assets/images/termales.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Valle del Cauca',
+      Color.fromARGB(255, 206, 208, 175),
+      DecorationImage(
+          image: AssetImage("assets/images/valle.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Quindío',
+      Color.fromARGB(141, 95, 184, 125),
+      DecorationImage(
+          image: AssetImage("assets/images/cocora.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Risaralda',
+      Color.fromARGB(255, 175, 194, 208),
+      DecorationImage(
+          image: AssetImage("assets/images/termales.jpg"), fit: BoxFit.fill),
+    ),
+    _ListaItems(
+      'Valle del Cauca',
+      Color.fromARGB(255, 206, 208, 175),
+      DecorationImage(
+          image: AssetImage("assets/images/valle.jpg"), fit: BoxFit.fill),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverPersistentHeader(
+            floating: true,
+            delegate: _SliverCustomHeaderDelegate(
+                200,
+                Container(alignment: Alignment.centerLeft, child: _titulo()),
+                200)),
+
+        // SliverAppBar(
+        //     floating: true,
+        //     title: Text(
+        //       'Hola',
+        //       style: TextStyle(color: Color.fromARGB(255, 106, 106, 106)),
+        //     ),
+        //     backgroundColor: Color.fromARGB(168, 192, 219, 234)),
+
+        SliverList(
+            delegate: SliverChildListDelegate([
+          ...departamentos,
+          SizedBox(
+            height: 200,
+          )
+        ]))
+      ],
+    );
+  }
+}
+
+class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  _SliverCustomHeaderDelegate(
+      @required this.minHeight, @required this.child, @required this.maxHeight);
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(
+      child: child,
+    );
+  }
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  bool shouldRebuild(_SliverCustomHeaderDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
+  }
+}
+
 //--------------------------------------- HEADER
 
 class _titulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
+    return Stack(children: <Widget>[
+      const HeaderHome(),
       Transform.translate(
         offset: Offset(19, 74),
         child: Stack(
@@ -44,7 +167,7 @@ class _titulo extends StatelessWidget {
   }
 }
 
-//---------------------------------------
+//--------------------------------------- LISTA DE DATOS
 
 class _listaSitios extends StatelessWidget {
   final departamentos = [
@@ -99,7 +222,7 @@ class _ListaItems extends StatelessWidget {
     this.color,
     this.photo,
   );
-
+//---------------------------------------------------- CONTAINER
   @override
   Widget build(BuildContext context) {
     return Card(
