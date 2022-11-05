@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_modulo1_fake_backend/user.dart';
-import 'package:turistapp/src/connection/server_controller.dart';
+import 'package:turistapp/src/pages/home_page.dart';
 import 'package:turistapp/src/pages/widgets/headers.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,12 +14,38 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _loading = false;
+  final bool _loading = false;
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String userName = "";
-  String password = "";
+  final userName = TextEditingController();
+  final password = TextEditingController();
+  FirebaseAuth fAuth = FirebaseAuth.instance;
+
   final String _errorMessage = "";
+
+  void validarUsuario() async {
+    try {
+      if (userName.text.isNotEmpty && password.text.isNotEmpty) {
+        final user = await fAuth.signInWithEmailAndPassword(
+            email: userName.text, password: password.text);
+        if (user != null) {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        }
+      } else {
+        mostrarMensaje("Datos incorrectos");
+      }
+    } catch (e) {
+      mostrarMensaje("Acceso Denegado" + e.toString());
+    }
+  }
+
+  void mostrarMensaje(String mensaje) {
+    final pantalla = ScaffoldMessenger.of(context);
+    pantalla.showSnackBar(SnackBar(
+      content: Text(mensaje),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const Text(
                   "Bienvenido",
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
                 const Text(
                   "a TuristApp.",
@@ -64,11 +91,10 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           TextFormField(
+                            controller: userName,
                             decoration: const InputDecoration(
                                 labelText: "Usuario / Correo"),
-                            onSaved: (value) {
-                              userName = value!;
-                            },
+                            onSaved: (value) {},
                             validator: ((value) {
                               if (value != null) {
                                 return "Este Campo es obligatorio.";
@@ -79,12 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                             height: 20,
                           ),
                           TextFormField(
+                            controller: password,
                             obscureText: true,
                             decoration:
                                 const InputDecoration(labelText: "Contraseña"),
-                            onSaved: (value) {
-                              password = value!;
-                            },
+                            onSaved: (value) {},
                             validator: ((value) {
                               if (value != null) {
                                 return "Este Campo es obligatorio.";
@@ -107,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             Transform.translate(
-              offset: Offset(55, 650),
+              offset: const Offset(55, 650),
               child: ElevatedButton(
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -119,7 +144,9 @@ class _LoginPageState extends State<LoginPage> {
                     fixedSize: MaterialStateProperty.all(const Size(290, 50)),
                     backgroundColor: MaterialStateProperty.all(
                         const Color.fromARGB(107, 85, 171, 219))),
-                onPressed: () => _login(context),
+                onPressed: () {
+                  validarUsuario();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -146,10 +173,10 @@ class _LoginPageState extends State<LoginPage> {
                 style: const TextStyle(color: Colors.red),
               ),
             Transform.translate(
-              offset: Offset(100, 700),
+              offset: const Offset(100, 700),
               child: Row(
                 children: [
-                  Text("No tienes cuenta? "),
+                  const Text("No tienes cuenta? "),
                   TextButton(
                       onPressed: (() {
                         _showRegister(context);
@@ -164,9 +191,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _login(BuildContext context) {
-    Navigator.of(context).pushNamed("/home");
-  }
+//   _login(BuildContext context) {
+//     Navigator.of(context).pushNamed("/home");
+//   }
 }
 
 void _showRegister(BuildContext context) {

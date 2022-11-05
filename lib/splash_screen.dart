@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:turistapp/src/connection/server_controller.dart';
 
 import 'package:turistapp/src/pages/login_page.dart';
 
@@ -11,14 +10,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // @override
-  // void initState() {
-  //   Future.delayed(
-  //       const Duration(milliseconds: 4500),
-  //       () => Navigator.push(
-  //           context, MaterialPageRoute(builder: (context) => LoginPage())));
-  //   super.initState();
-  // }
+  void initState() {
+    pasarPage();
+    super.initState();
+  }
+
+  Future<void> pasarPage() async {
+    Future.delayed(Duration(milliseconds: 2500), () async {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

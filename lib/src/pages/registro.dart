@@ -1,11 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:turistapp/src/pages/headers_page.dart';
 import 'package:turistapp/src/pages/widgets/headers.dart';
 
-void main() => runApp(const Registro());
+void main() => runApp(Registro());
 
 class Registro extends StatelessWidget {
-  const Registro({super.key});
+  Registro();
+
+  final userName = TextEditingController();
+  final password = TextEditingController();
+
+  FirebaseAuth fAuth = FirebaseAuth.instance;
+
+  void guardarUsuario() {
+    fAuth.createUserWithEmailAndPassword(
+        email: userName.text, password: password.text);
+  }
 
   @override
   Widget build(BuildContext context) {
