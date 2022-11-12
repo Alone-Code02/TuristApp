@@ -254,6 +254,6 @@ class _ListaItems extends StatelessWidget {
   }
 
   void _showCocora(BuildContext context) {
-    Navigator.of(context).pushNamed("/quindio/parquecafe");
+    Navigator.of(context).pushNamed("/quindio/cocora");
   }
 }

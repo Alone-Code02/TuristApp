@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_modulo1_fake_backend/user.dart';
 import 'package:turistapp/src/pages/home_page.dart';
 import 'package:turistapp/src/pages/widgets/headers.dart';
 
@@ -18,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final userName = TextEditingController();
+  final email = TextEditingController();
   final password = TextEditingController();
   FirebaseAuth fAuth = FirebaseAuth.instance;
 
@@ -25,18 +25,18 @@ class _LoginPageState extends State<LoginPage> {
 
   void validarUsuario() async {
     try {
-      if (userName.text.isNotEmpty && password.text.isNotEmpty) {
+      if (email.text.isNotEmpty && password.text.isNotEmpty) {
         final user = await fAuth.signInWithEmailAndPassword(
-            email: userName.text, password: password.text);
+            email: email.text, password: password.text);
         if (user != null) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
         }
       } else {
         mostrarMensaje("Datos incorrectos");
       }
     } catch (e) {
-      mostrarMensaje("Acceso Denegado" + e.toString());
+      mostrarMensaje("Acceso Denegado$e");
     }
   }
 
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           TextFormField(
-                            controller: userName,
+                            controller: email,
                             decoration: const InputDecoration(
                                 labelText: "Usuario / Correo"),
                             onSaved: (value) {},
@@ -167,11 +167,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            if (_errorMessage.isNotEmpty)
-              Text(
-                _errorMessage,
-                style: const TextStyle(color: Colors.red),
-              ),
             Transform.translate(
               offset: const Offset(100, 700),
               child: Row(

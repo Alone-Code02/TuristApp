@@ -6,10 +6,10 @@ import 'package:turistapp/src/pages/deptos/sitios/cocora.dart';
 import 'package:turistapp/src/pages/deptos/sitios/parquecafe.dart';
 import 'package:turistapp/src/pages/deptos/valle.dart';
 
-import 'package:turistapp/src/pages/registro.dart';
 import 'package:turistapp/src/pages/forget.dart';
 import 'package:turistapp/src/pages/home_page.dart';
 import 'package:turistapp/src/pages/login_page.dart';
+import 'package:turistapp/src/pages/registro_page.dart';
 
 //ServerController _serverController = ServerController();
 
@@ -27,7 +27,7 @@ class TuristApp extends StatelessWidget {
         routes: {
           "/": (BuildContext context) => SplashScreen(),
           "/log": (BuildContext context) => LoginPage(),
-          "/reg": (BuildContext context) => Registro(),
+          "/reg": (BuildContext context) => RegistroUsuario(),
           "/forget": (BuildContext context) => ForgetPage(),
           "/home": (BuildContext context) => HomePage(),
           "/quindio": (BuildContext context) => Quindio(),
