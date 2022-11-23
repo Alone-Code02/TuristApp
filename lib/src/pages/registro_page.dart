@@ -21,8 +21,7 @@ class _RegistroUsuarioState extends State<RegistroUsuario> {
   FirebaseAuth fAuth = FirebaseAuth.instance;
 
   void guardarUsuario(BuildContext context) async {
-    Future<bool> resultado =
-        usuarioReg.registrarUsuario(email.text, password.text);
+    var resultado = usuarioReg.registrarUsuario(email.text, password.text);
     Navigator.of(context).pushNamed("/log");
   }
 

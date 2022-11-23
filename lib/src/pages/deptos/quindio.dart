@@ -45,42 +45,6 @@ class _MainScroll extends StatelessWidget {
       DecorationImage(
           image: AssetImage("assets/images/panaca.jpg"), fit: BoxFit.fill),
     ),
-    _ListaItems(
-      'Quindío',
-      Color.fromARGB(141, 95, 184, 125),
-      DecorationImage(
-          image: AssetImage("assets/images/cocora.jpg"), fit: BoxFit.fill),
-    ),
-    _ListaItems(
-      'Risaralda',
-      Color.fromARGB(255, 175, 194, 208),
-      DecorationImage(
-          image: AssetImage("assets/images/termales.jpg"), fit: BoxFit.fill),
-    ),
-    _ListaItems(
-      'Valle del Cauca',
-      Color.fromARGB(255, 206, 208, 175),
-      DecorationImage(
-          image: AssetImage("assets/images/valle.jpg"), fit: BoxFit.fill),
-    ),
-    _ListaItems(
-      'Quindío',
-      Color.fromARGB(141, 95, 184, 125),
-      DecorationImage(
-          image: AssetImage("assets/images/cocora.jpg"), fit: BoxFit.fill),
-    ),
-    _ListaItems(
-      'Risaralda',
-      Color.fromARGB(255, 175, 194, 208),
-      DecorationImage(
-          image: AssetImage("assets/images/termales.jpg"), fit: BoxFit.fill),
-    ),
-    _ListaItems(
-      'Valle del Cauca',
-      Color.fromARGB(255, 206, 208, 175),
-      DecorationImage(
-          image: AssetImage("assets/images/valle.jpg"), fit: BoxFit.fill),
-    ),
   ];
 
   @override
@@ -151,7 +115,7 @@ class _titulo extends StatelessWidget {
     return Stack(children: <Widget>[
       const HeaderHome(),
       Transform.translate(
-        offset: Offset(19, 74),
+        offset: const Offset(19, 74),
         child: Stack(
           children: [
             Image.asset(

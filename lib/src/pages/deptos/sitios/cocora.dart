@@ -1,3 +1,56 @@
+// import 'package:flutter/material.dart';
+
+// class Cocora extends StatelessWidget {
+//   const Cocora({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: CustomScrollView(
+//         slivers: <Widget>[
+//           SliverPersistentHeader(
+//             pinned: true,
+//             delegate: _CocoraHeader(),
+//           ),
+//           SliverToBoxAdapter(
+//             child: Container(
+//               padding: EdgeInsets.all(20),
+//               child: Text(
+//                 "El valle de Cocora es un paisaje natural localizado en la cordillera central de los Andes colombianos, específicamente en el departamento del Quindío, en el área de influencia del Parque nacional natural Los Nevados. Cuenta con algunas poblaciones del árbol nacional de Colombia, la palma de cera del Quindío (Ceroxylon quindiuense), así como de una gran variedad de flora y fauna, mucha de ella en peligro de extinción, protegida bajo el estatus de parque nacional natural. El valle, así como la localidad cercana de Salento, se ubican entre los principales destinos turísticos de Colombia.​",
+//                 style: TextStyle(fontSize: 25),
+//                 textAlign: TextAlign.justify,
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// const _maxHeaderExtent = 350.0;
+// const _minHeaderExtent = 200.0;
+
+// class _CocoraHeader extends SliverPersistentHeaderDelegate {
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       child: Image.asset("assets/images/cocora.jpg"),
+//     );
+//   }
+
+//   @override
+//   double get maxExtent => _maxHeaderExtent;
+
+//   @override
+//   double get minExtent => _minHeaderExtent;
+
+//   @override
+//   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+//       false;
+// }
+
 import 'package:flutter/material.dart';
 import 'package:turistapp/src/pages/widgets/headers.dart';
 

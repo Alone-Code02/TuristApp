@@ -93,15 +93,6 @@ class _MainScroll extends StatelessWidget {
                 200,
                 Container(alignment: Alignment.centerLeft, child: _titulo()),
                 200)),
-
-        // SliverAppBar(
-        //     floating: true,
-        //     title: Text(
-        //       'Hola',
-        //       style: TextStyle(color: Color.fromARGB(255, 106, 106, 106)),
-        //     ),
-        //     backgroundColor: Color.fromARGB(168, 192, 219, 234)),
-
         SliverList(
             delegate: SliverChildListDelegate([
           ...departamentos,
@@ -159,7 +150,6 @@ class _titulo extends StatelessWidget {
               height: 50,
               width: 50,
             ),
-            //IconButton(onPressed: () {}, icon: icon)
           ],
         ),
       )
