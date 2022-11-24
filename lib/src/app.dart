@@ -9,6 +9,7 @@ import 'package:turistapp/src/pages/deptos/valle.dart';
 import 'package:turistapp/src/pages/forget.dart';
 import 'package:turistapp/src/pages/home_page.dart';
 import 'package:turistapp/src/pages/login_page.dart';
+import 'package:turistapp/src/pages/maps/cocora_map.dart';
 import 'package:turistapp/src/pages/registro_page.dart';
 
 //ServerController _serverController = ServerController();
@@ -35,6 +36,7 @@ class TuristApp extends StatelessWidget {
           "/quindio/parquecafe": (BuildContext context) => ParqueCafe(),
           "/risaralda": (context) => Risaralda(),
           "/valle": (context) => Valle(),
+          "/cocomap": (context) => CocoraMaps(),
         }
 
         // ------
