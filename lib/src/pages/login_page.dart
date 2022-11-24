@@ -25,18 +25,30 @@ class _LoginPageState extends State<LoginPage> {
 
   void validarUsuario() async {
     try {
-      if (email.text.isNotEmpty && password.text.isNotEmpty) {
-        final user = await fAuth.signInWithEmailAndPassword(
-            email: email.text, password: password.text);
-        if (user != null) {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
-        }
-      } else {
-        mostrarMensaje("Datos incorrectos");
+      //if (email.text.isNotEmpty && password.text.isNotEmpty) {
+      final user = await fAuth.signInWithEmailAndPassword(
+          email: email.text, password: password.text);
+      if (user != null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       }
-    } catch (e) {
-      mostrarMensaje("Acceso Denegado$e");
+    } on FirebaseAuthException catch (e) {
+      //asdasdmostrarMensaje(e.code);
+      if (e.code == "invalid-email") {
+        mostrarMensaje("El formato del eMail no es correcto.");
+      }
+      if (e.code == "user-not-found") {
+        mostrarMensaje("Usuario no registrado.");
+      }
+      if (e.code == "unknown") {
+        mostrarMensaje("Complete los datos.");
+      }
+      if (e.code == "wrong-password") {
+        mostrarMensaje("Constraseña incorrecta.");
+      }
+      if (e.code == "network-request-failed") {
+        mostrarMensaje("Sin conexión a internet.");
+      }
     }
   }
 
@@ -92,6 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: <Widget>[
                           TextFormField(
                             controller: email,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
                                 labelText: "Usuario / Correo"),
                             onSaved: (value) {},
